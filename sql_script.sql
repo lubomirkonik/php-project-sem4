@@ -1,28 +1,3 @@
-# ************************************************************
-# Sequel Pro SQL dump
-# Version 4004
-#
-# http://www.sequelpro.com/
-# http://code.google.com/p/sequel-pro/
-#
-# Host: localhost (MySQL 5.5.29)
-# Database: idukan
-# Generation Time: 2013-10-24 15:01:26 +0000
-# ************************************************************
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-
-# Dump of table tbl_category
-# ------------------------------------------------------------
-
 DROP TABLE IF EXISTS `tbl_category`;
 
 CREATE TABLE `tbl_category` (
@@ -31,12 +6,9 @@ CREATE TABLE `tbl_category` (
   `cat_description` varchar(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`cat_id`),
   KEY `cat_name` (`cat_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 
-
-# Dump of table tbl_order
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `tbl_order`;
 
@@ -53,12 +25,9 @@ CREATE TABLE `tbl_order` (
   PRIMARY KEY (`od_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `user_order` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 
-
-# Dump of table tbl_order_item
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `tbl_order_item`;
 
@@ -73,8 +42,6 @@ CREATE TABLE `tbl_order_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-# Dump of table tbl_product
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `tbl_product`;
 
@@ -90,11 +57,9 @@ CREATE TABLE `tbl_product` (
   KEY `cat_id` (`cat_id`),
   KEY `pd_name` (`pd_name`),
   CONSTRAINT `tbl_product_ibfk_1` FOREIGN KEY (`cat_id`) REFERENCES `tbl_category` (`cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 
-# Dump of table tbl_user
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `tbl_user`;
 
@@ -108,13 +73,4 @@ CREATE TABLE `tbl_user` (
   `user_is_admin` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-
-
-
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
