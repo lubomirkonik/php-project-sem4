@@ -7,9 +7,11 @@ include 'includes/nav.php';
 <div id="main">
     <div class="container">
         <div class="carousel">
-            <div class="carousel-caption">
-                <img src="img/young-plants.jpg" alt="...">
-            </div>
+            <div class="carousel-caption" id="carousel-img">
+                <div class="col-lg-1 col-sm-1"></div>
+                <img class="img-responsive" src="img/young-plants.jpg" alt="...">
+                <div class="col-lg-1 col-sm-1"></div>
+            </div>  
             <div class="carousel-caption">
               <h4>The New Young Plants</h4>
               Bring life to your home

@@ -102,7 +102,7 @@ include 'includes/nav.php';
       var postal_code = $('#postal_code').val();
       if(name == '' || address == '' || city=='' || postal_code=='' )
       {
-        $('<h4 class="alert" style="color:red">Please fill all fields.</h4>').hide().insertBefore('#oform');
+        $('<h4 class="alert" style="color:red">Please fill all fields</h4>').hide().insertBefore('#oform');
         $('.alert').fadeIn();
         return false;
       }

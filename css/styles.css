@@ -1,6 +1,6 @@
 
 body {
-	padding-top: 90px;
+	padding-top: 40px;
 }
 html,
 body {
@@ -93,4 +93,8 @@ footer p{
 
 .products-table tbody>tr>td{
     vertical-align: middle;
+}
+
+#carousel-img {
+    padding-top: 96px;
 }

@@ -4,7 +4,7 @@
       <div class="navbar navbar-fixed-top navbar-inverse">
         <div class="container">
           <div class="navbar-header">
-            <a href="index.php" class="navbar-brand">eShop</a>           
+            <a href="index.php" class="navbar-brand">greenShop</a>           
              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>

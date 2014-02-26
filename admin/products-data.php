@@ -74,7 +74,7 @@ if(is_array($_POST) && count($_POST) > 0) {
 
 	if (!valid($proimage['type']))
 	{
-		$_SESSION['ERRMSG_ARR'] = array('You must upload a JPEG, JPG or PNG.');
+		$_SESSION['ERRMSG_ARR'] = array('You must upload a JPEG, JPG or PNG');
 		header("Location: products-add.php");
 		exit();
 	}
