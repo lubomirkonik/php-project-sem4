@@ -70,42 +70,15 @@ footer p{
 }
 
 .form-signin input[type="text"] {
-    margin-bottom: -1px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    margin-bottom: 5px;
 }
 
 .form-signin input[type="password"] {
     margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
 } 
 
-.carousel-caption, .icon-next, .icon-prev {
+.carousel-caption {
     color: #333 !important;
-}
-
-.carousel-inner img {
-    margin: 0 auto;
-}
-
-.carousel-control {
-    background-image: none !important;
-}
-
-.carousel-indicators li {
-    border-color: #666;
-}
-
-.carousel-indicators li.active {
-    background-color: #666;
-}
-
-.carousel-indicators {
-    position: relative;
-    bottom: auto;
-    top: auto;
-    margin-top: 10px;
 }
 
 .carousel-caption {
@@ -117,14 +90,7 @@ footer p{
     padding-bottom: 0;
     text-shadow: 0 0 0 transparent;
 }
-body.modal-open {
-    margin-right: 0;
-}
 
 .products-table tbody>tr>td{
     vertical-align: middle;
-}
-
-#hr-home{
-    border-top: transparent 
 }

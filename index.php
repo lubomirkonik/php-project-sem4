@@ -11,8 +11,8 @@ include 'includes/nav.php';
                 <img src="img/young-plants.jpg" alt="...">
             </div>
             <div class="carousel-caption">
-              <h4>The new Young Plants</h4>
-              All the power blah blah.. ;)
+              <h4>The New Young Plants</h4>
+              Bring life to your home
             </div>
         </div>    
     </div>

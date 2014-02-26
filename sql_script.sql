@@ -6,7 +6,7 @@ CREATE TABLE `tbl_category` (
   `cat_description` varchar(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`cat_id`),
   KEY `cat_name` (`cat_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
