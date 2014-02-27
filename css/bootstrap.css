@@ -4854,8 +4854,9 @@ a.thumbnail:hover,a.thumbnail:focus {
 }
 
 .alert {
-    padding: 15px;
-    margin-bottom: 21px;
+    padding: 0px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     border: 1px solid transparent;
     border-radius: 4px
 }

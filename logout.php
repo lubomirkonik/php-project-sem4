@@ -8,7 +8,7 @@
 	unset($_SESSION['CART']);
 
 
-	$_SESSION['MSGS'] = array("<b>See ya! </b> You have been logged out. ");
+	$_SESSION['MSGS'] = array("You have been logged out. ");
 	session_write_close();
 	header("location: index.php");
 ?>

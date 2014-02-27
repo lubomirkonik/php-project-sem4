@@ -1,6 +1,5 @@
 <?php
-	session_start();
-
+  session_start();
   include 'includes/header.php';
   include 'includes/nav.php';
 ?>
@@ -10,11 +9,11 @@
           <?php
           if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
               ?>
-              <div class="alert alert-warning">
+              <div class="alert">
                 <ul class="list-unstyled">
                   <?php 
                   foreach ($_SESSION['ERRMSG_ARR'] as $msg) {
-                    echo '<li>'.$msg.'</li>';
+                    echo '<li><strong style="color: red">'.$msg.'</strong></li>';
                   }
                   ?>
                 </ul>
@@ -28,13 +27,13 @@
             <div class="form-group">
               <label class="control-label">Username<br></label>
               <div class="controls">
-                <input type="text" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" class="form-control" placeholder="mogambo" name="username" maxlength="20">
+                <input type="text" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" class="form-control" placeholder="username" name="username" maxlength="20">
               </div>
             </div>
             <div class="form-group">
               <label class="control-label">Email</label>
               <div class="controls">
-                <input type="email" class="form-control" placeholder="mogambo@india.com" name="email" maxlength="30">
+                <input type="email" class="form-control" placeholder="username@mail.com" name="email" maxlength="30">
               </div>
             </div>
             <div class="form-group">
@@ -49,7 +48,7 @@
                 <input type="password" class="form-control" placeholder="Confirm password" name="cpassword">
               </div>
             </div>
-            <button class="btn btn-block btn-primary">Submit</button>
+            <button class="btn">Submit</button>
           </form>
         </div>
       </div>

@@ -1,6 +1,6 @@
 
 body {
-	padding-top: 37px;
+	padding-top: 50px;  /*37*/
 }
 html,
 body {
@@ -96,5 +96,5 @@ footer p{
 }
 
 #carousel-img {
-    padding-top: 70px;
+    padding-top: 40px;
 }

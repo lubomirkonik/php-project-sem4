@@ -40,7 +40,7 @@
 	
 	//Input Validations
 	if($username == '') {
-		$errmsg_arr[] = ' Username missing';
+		$errmsg_arr[] = 'Username missing';
 		$errflag = true;
 	}
 	if($email == '') {
@@ -64,11 +64,11 @@
 		$errflag = true;
 	}
 	if( strpos($email, "@") < 0 ) {
-		$errmsg_arr[] = 'Enter a valid email ID';
+		$errmsg_arr[] = 'Enter a valid email';
 		$errflag = true;
 	}
 	if( strpos($email, ".") < 0 ) {
-		$errmsg_arr[] = 'Enter a valid email ID';
+		$errmsg_arr[] = 'Enter a valid email';
 		$errflag = true;
 	}
 
@@ -103,7 +103,7 @@
 	
 	//Check whether the query was successful or not
 	if($result) {
-		$_SESSION['MSGS'] = array('<b>Whoa you are awesome!</b> Registration Successful!');;
+		$_SESSION['MSGS'] = array('Registration Successful!');
 		session_write_close();
 		header("location: ../index.php");
 		exit();
