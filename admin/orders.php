@@ -47,7 +47,7 @@ include_once 'orders-data.php'; ?>
             <td><?php echo $orders->od_address . '<br>' . $orders->od_city . ' ' . $orders->od_postal_code; ?></td>
             <td><?php echo $orders->od_cost ?> &euro;</td>
             <!--<td><a href="orders-data.php?update=<?php// echo $orders->od_id ?>&status=<?php ?>">Update</a></td>-->
-            <td><input type="submit" value="Update"></td>
+            <td><input class="input-submit" type="submit" value="Update"></td>
           </tr>
         <?php
           }

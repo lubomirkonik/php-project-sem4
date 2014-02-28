@@ -19,7 +19,7 @@ $res = mysql_query("SELECT count(`tbl_product`.`cat_id`) as `product_count`,`tbl
 					ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
 					GROUP BY `tbl_category`.`cat_id`;");
 while ($row = mysql_fetch_object($res)) {
-	$categories[] = $row;
+       $categories[] = $row;
 }
 //handle new category request
 if(is_array($_POST) && count($_POST) > 0) {

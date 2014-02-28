@@ -98,3 +98,12 @@ footer p{
 #carousel-img {
     padding-top: 40px;
 }
+
+.input-submit {
+    border: 0px;
+    background-color: #fff;
+}
+
+.input-submit:hover, .input-submit:focus {
+    text-decoration: underline;
+}

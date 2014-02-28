@@ -1,3 +1,19 @@
+DROP TABLE IF EXISTS `tbl_user`;
+
+CREATE TABLE `tbl_user` (
+  `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(20) NOT NULL DEFAULT '',
+  `password` varchar(128) NOT NULL DEFAULT '',
+  `user_email` varchar(25) NOT NULL DEFAULT '',
+  `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `user_is_admin` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_name` (`user_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+
+
+
 DROP TABLE IF EXISTS `tbl_category`;
 
 CREATE TABLE `tbl_category` (
@@ -7,6 +23,24 @@ CREATE TABLE `tbl_category` (
   PRIMARY KEY (`cat_id`),
   KEY `cat_name` (`cat_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `tbl_product`;
+
+CREATE TABLE `tbl_product` (
+  `pd_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cat_id` int(10) unsigned NOT NULL,
+  `pd_name` varchar(99) NOT NULL DEFAULT '',
+  `pd_description` text NOT NULL,
+  `pd_price` decimal(7,2) NOT NULL DEFAULT '0.00',
+  `pd_qty` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `pd_image` varchar(99) DEFAULT NULL,
+  PRIMARY KEY (`pd_id`),
+  KEY `cat_id` (`cat_id`),
+  KEY `pd_name` (`pd_name`),
+  CONSTRAINT `tbl_product_ibfk_1` FOREIGN KEY (`cat_id`) REFERENCES `tbl_category` (`cat_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 
 
@@ -40,37 +74,3 @@ CREATE TABLE `tbl_order_item` (
   CONSTRAINT `tbl_order_item_ibfk_1` FOREIGN KEY (`od_id`) REFERENCES `tbl_order` (`od_id`),
   CONSTRAINT `tbl_order_item_ibfk_2` FOREIGN KEY (`pd_id`) REFERENCES `tbl_product` (`pd_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
-DROP TABLE IF EXISTS `tbl_product`;
-
-CREATE TABLE `tbl_product` (
-  `pd_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cat_id` int(10) unsigned NOT NULL,
-  `pd_name` varchar(99) NOT NULL DEFAULT '',
-  `pd_description` text NOT NULL,
-  `pd_price` decimal(7,2) NOT NULL DEFAULT '0.00',
-  `pd_qty` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `pd_image` varchar(99) DEFAULT NULL,
-  PRIMARY KEY (`pd_id`),
-  KEY `cat_id` (`cat_id`),
-  KEY `pd_name` (`pd_name`),
-  CONSTRAINT `tbl_product_ibfk_1` FOREIGN KEY (`cat_id`) REFERENCES `tbl_category` (`cat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
-
-
-DROP TABLE IF EXISTS `tbl_user`;
-
-CREATE TABLE `tbl_user` (
-  `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(20) NOT NULL DEFAULT '',
-  `password` varchar(128) NOT NULL DEFAULT '',
-  `user_email` varchar(25) NOT NULL DEFAULT '',
-  `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `user_is_admin` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `user_name` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;

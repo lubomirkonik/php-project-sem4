@@ -1,3 +1,6 @@
+<?php
+include_once __DIR__.'/../admin/category-data.php';
+?>
 <body>
   <div class="wrap">
     <nav>
@@ -15,7 +18,19 @@
           <div class="collapse navbar-collapse" role="navigation" id="navbar-main">
             <ul class="nav navbar-nav">
               <li><a href="index.php">Home</a></li>
-              <li><a href="store.php">Store</a></li>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Store <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                      <li><a href="store.php">All Products</a></li>
+                      <?php
+                      if(isset($categories) && count($categories)>0) {
+                        foreach ($categories as $category) {
+                            echo '<li><a href="store.php?category='.$category->cat_id.'">'.$category->cat_name.'</a></li>';
+                        }
+                      }  
+                      ?>
+                  </ul>
+              </li>
               <li><a href="contact.php">Contact</a></li>
             </ul>
             <form class="navbar-form navbar-left" action="store.php" method="GET">

@@ -4456,7 +4456,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
     }
 
     .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
-        color: #fff
+        /*color: #fff*/
     }
 
     .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover,.navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus {
@@ -4485,6 +4485,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 
 .breadcrumb {
     padding: 8px 15px;
+    margin-top: 20px;
     margin-bottom: 21px;
     list-style: none;
     background-color: white;
@@ -4501,7 +4502,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 }
 
 .breadcrumb>.active {
-    color: #95a5a6
+    /*color: #95a5a6*/
 }
 
 .pagination {
