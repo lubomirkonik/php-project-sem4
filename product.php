@@ -40,7 +40,6 @@ include 'includes/nav.php';
         <li><a href="store.php?category=<?php echo $product->cat_id ?>"><?php echo $product->cat_name ?></a></li>
         <li class="active"><?php echo $product->pd_name ?></li>
       </ol>
-    <!--<p>&nbsp;</p><p>&nbsp;</p>-->
     </header>
     <div class="container">
       <div class="row">

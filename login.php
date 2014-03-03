@@ -5,7 +5,7 @@ include 'includes/header.php';
 include 'includes/nav.php';
 ?>
 <div id="main">
-  <div class="container">
+  <div class="container signin-profile">
       <form method="POST" action="includes/login-exec.php" accept-charset="UTF-8" class="form-signin">
         <h3 class="form-signin-heading">Please sign in</h3>
         <?php

@@ -99,6 +99,10 @@ footer p{
     padding-top: 40px;
 }
 
+.signin-profile {
+    padding-top: 20px;
+}
+
 .input-submit {
     border: 0px;
     background-color: #fff;

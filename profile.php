@@ -5,7 +5,7 @@ include 'includes/nav.php';
 include 'includes/profile-data.php';
 ?>
 <div id="main">
-	<div class="container">
+    <div class="container signin-profile">
       <div class="row">
         <div class="col-md-5">
           <h4>User credentials</h4>

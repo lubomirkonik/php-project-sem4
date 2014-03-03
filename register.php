@@ -3,7 +3,7 @@
   include 'includes/header.php';
   include 'includes/nav.php';
 ?>
-<div class="container">
+<div class="container signin-profile">
       <div class="row">
         <div class="col-xs-offset-4 col-sm-4 col-sm-offset-4">
           <?php

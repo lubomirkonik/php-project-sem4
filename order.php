@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once 'auth.php';
 include 'includes/header.php';
 include 'includes/nav.php';
 ?>

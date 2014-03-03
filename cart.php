@@ -76,7 +76,7 @@ include 'includes/nav.php';
     <h3 class="page-header">Cart</h3>
   </header>
   <div class="container">
-    <?php if( count($_SESSION['CART']) > 0 )  { ?>
+    <?php if( isset( $_SESSION['CART']) && count($_SESSION['CART']) > 0 )  { ?>
     <div class="table-responsive">
       <table class="table products-table">
       <thead>
@@ -96,7 +96,7 @@ include 'includes/nav.php';
           ?>
           <tr>
             <td><?php echo $item['pd_name'] ?></td>
-            <td><?php echo $item['pd_description'] ?  $item['pd_description'] : '<span class="text-muted">No description</span>'; ?></td>
+            <td><?php echo $item['pd_description'] ?  $item['pd_description'] : '<span>No description</span>'; ?></td>
             <td class="text-center"><?php echo $item['cat_name'] ?></td>
             <td class="text-center"> <?php echo sprintf('%01.2f', $item['pd_price']); ?> &euro;</td>
             <td class="text-center"><a href="cart.php?del=<?php echo $item['pd_id'] ?>">Remove</a></td>
