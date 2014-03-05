@@ -96,7 +96,7 @@ include 'includes/nav.php';
           ?>
           <tr>
             <td><?php echo $item['pd_name'] ?></td>
-            <td><?php echo $item['pd_description'] ?  $item['pd_description'] : '<span>No description</span>'; ?></td>
+            <td><?php echo $item['pd_description'] ?  trim_text($item['pd_description']) : '<span>No description</span>'; ?></td>
             <td class="text-center"><?php echo $item['cat_name'] ?></td>
             <td class="text-center"> <?php echo sprintf('%01.2f', $item['pd_price']); ?> &euro;</td>
             <td class="text-center"><a href="cart.php?del=<?php echo $item['pd_id'] ?>">Remove</a></td>
@@ -129,4 +129,35 @@ include 'includes/nav.php';
 </div>
 <?php
 include 'includes/footer.php';
+?>
+
+<?php
+/**
+ * trims text to a space then adds ellipses if desired
+ * @param string $input text to trim
+ * @param int $length in characters to trim to
+ * @param bool $ellipses if ellipses (...) are to be added
+ * @param bool $strip_html if html tags are to be stripped
+ * @return string
+ */
+function trim_text($input, $length = 450, $ellipses = true, $strip_html = false) {
+    //strip tags, if desired
+    if ($strip_html) {
+        $input = strip_tags($input);
+    }
+  
+    //no need to trim, already shorter than trim length
+    if (strlen($input) <= $length) {
+        return $input;
+    }
+  
+    $trimmed_text = substr($input, 0, $length);
+  
+    //add ellipses (...)
+    if ($ellipses) {
+        $trimmed_text .= '...';
+    }
+  
+    return $trimmed_text;
+}
 ?>

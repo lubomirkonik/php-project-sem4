@@ -27,7 +27,7 @@ include_once 'products-data.php'; ?>
           <tr>
             <td><?php echo $product->pd_name ?></td>
             <td><img src="../img/uploads/<?php echo $product->pd_image ?>" alt="<?php echo $product->pd_name ?>" style="max-width:140px;"></td>
-            <td><?php echo $product->pd_description ?></td>
+            <td><?php echo trim_text($product->pd_description) ?></td>
             <td><?php echo $product->cat_name ?></td>
             <td class="text-center"> <?php echo $product->pd_price ?> &euro;</td>
             <td class="text-center"><?php echo $product->pd_qty ?></td>
@@ -46,3 +46,34 @@ include_once 'products-data.php'; ?>
     }
     ?>
   </div>
+
+<?php
+/**
+ * trims text to a space then adds ellipses if desired
+ * @param string $input text to trim
+ * @param int $length in characters to trim to
+ * @param bool $ellipses if ellipses (...) are to be added
+ * @param bool $strip_html if html tags are to be stripped
+ * @return string
+ */
+function trim_text($input, $length = 150, $ellipses = true, $strip_html = false) {
+    //strip tags, if desired
+    if ($strip_html) {
+        $input = strip_tags($input);
+    }
+  
+    //no need to trim, already shorter than trim length
+    if (strlen($input) <= $length) {
+        return $input;
+    }
+  
+    $trimmed_text = substr($input, 0, $length);
+  
+    //add ellipses (...)
+    if ($ellipses) {
+        $trimmed_text .= '...';
+    }
+  
+    return $trimmed_text;
+}
+?>

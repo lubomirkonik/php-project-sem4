@@ -1,5 +1,6 @@
 <?php
-include_once 'category-data.php'; ?>
+include_once 'category-data.php'; 
+?>
   <div class="col-md-2">
     <a href="category-add.php" class="btn btn-block btn-sm">Add Category</a>
   </div>

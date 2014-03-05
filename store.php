@@ -68,7 +68,11 @@ else
             <div class="thumbnail">
               <img src="img/uploads/<?php echo $product->pd_image ?>" alt="<?php echo $product->pd_name ?>">
               <div class="caption">
-                 <h4 class="text-center"><?php echo $product->pd_name ?><small>&nbsp;&nbsp;<?php echo $product->pd_price ?> &euro;</small></h4>
+                 <!--<h4 class="text-center"><?php //echo $product->pd_name ?><small>&nbsp;&nbsp;<?php //echo $product->pd_price ?> &euro;</small></h4>-->
+                 <h4 class="text-center">
+                     <abbr title="<?php echo $product->pd_name ?>" ><?php echo trim_text($product->pd_name); ?></abbr>
+                     <small>&nbsp;<?php echo $product->pd_price ?> &euro;</small>
+                 </h4>
                  <p class="text-center"><a href="product.php?id=<?php echo $product->pd_id; ?>" class="btn">View</a> <a href="cart.php?add=<?php echo $product->pd_id; ?>" class="btn">Add to cart</a></p>
               </div>
             </div>
@@ -88,4 +92,39 @@ else
   </div>
 <?php
 include 'includes/footer.php';
+?>
+
+<?php
+/**
+ * trims text to a space then adds ellipses if desired
+ * @param string $input text to trim
+ * @param int $length in characters to trim to
+ * @param bool $ellipses if ellipses (...) are to be added
+ * @param bool $strip_html if html tags are to be stripped
+ * @return string
+ */
+function trim_text($input, $length = 12, $ellipses = false, $strip_html = false) {
+    //strip tags, if desired
+    if ($strip_html) {
+        $input = strip_tags($input);
+    }
+  
+    //no need to trim, already shorter than trim length
+    if (strlen($input) <= $length) {
+        return $input;
+    }
+  
+    //find last space within length
+//    $last_space = strrpos(substr($input, 0, $length), ' ');
+//    $trimmed_text = substr($input, 0, $last_space);
+    
+    $trimmed_text = substr($input, 0, $length);
+  
+    //add ellipses (...)
+    if ($ellipses) {
+        $trimmed_text .= '...';
+    }
+  
+    return $trimmed_text;
+}
 ?>

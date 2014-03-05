@@ -56,7 +56,7 @@ include 'includes/nav.php';
           // echo $fmt->formatCurrency($product->pd_price, "EUR");
           echo sprintf('%01.2f', $product->pd_price); ?> &euro;</h4>
           <p><?php echo $product->pd_description ?  $product->pd_description : '<span>No description</span>'; ?></p>
-          <p>Available Quantity: <span><?php echo $product->pd_qty ?></span></p>
+          <p>Available Quantity: <span class="badge"><?php echo $product->pd_qty ?></span></p>
           <a href="cart.php?add=<?php echo $product->pd_id; ?>" class="btn">Add to Cart<br></a>
         </div>
       </div>
