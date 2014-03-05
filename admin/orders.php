@@ -23,7 +23,7 @@ include_once 'orders-data.php'; ?>
           foreach ($orders as $order) {
         ?>
           <form action="orders-data.php" method="POST">
-          <tr>
+           <tr>
             <td><input type="hidden" name="od_id" value="<?php echo $order->od_id; ?>" ><?php echo $order->od_id; ?></td>
             <td><?php echo $order->od_date; ?></td>
             <td><?php echo $order->products; ?></td>
@@ -32,7 +32,7 @@ include_once 'orders-data.php'; ?>
                   <option value="<?php echo $order->od_status; ?>"><?php echo $order->od_status; ?></option>
                   <?php
                     $tmp = array();
-                    for ($i=0; $i < count($statuses); $i++) {
+                    for ($i = 0; $i < count($statuses); $i++) {
                         if (strcmp($order->od_status, $statuses[$i]) !== 0){
                             $tmp[] = $statuses[$i]; 
                         }
@@ -47,7 +47,7 @@ include_once 'orders-data.php'; ?>
             <td><?php echo $order->od_address . '<br>' . $order->od_city . ' ' . $order->od_postal_code; ?></td>
             <td><?php echo $order->od_cost ?> &euro;</td>
             <td><input class="input-submit" type="submit" value="Update" ></td>
-          </tr>
+           </tr>
           </form>
         <?php
           }

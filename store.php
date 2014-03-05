@@ -68,7 +68,7 @@ else
             <div class="thumbnail">
               <img src="img/uploads/<?php echo $product->pd_image ?>" alt="<?php echo $product->pd_name ?>">
               <div class="caption">
-                 <h4 class="text-center"><?php echo $product->pd_name ?></h4>
+                 <h4 class="text-center"><?php echo $product->pd_name ?><small>&nbsp;&nbsp;<?php echo $product->pd_price ?> &euro;</small></h4>
                  <p class="text-center"><a href="product.php?id=<?php echo $product->pd_id; ?>" class="btn">View</a> <a href="cart.php?add=<?php echo $product->pd_id; ?>" class="btn">Add to cart</a></p>
               </div>
             </div>
@@ -79,7 +79,7 @@ else
         <?php 
         } else {
         ?>
-        <div class="alert"><strong>No products found!</strong></div>
+        <div class="alert" style="padding-left: 15px"><strong>No products found!</strong></div>
         <?php
         } 
         ?>
