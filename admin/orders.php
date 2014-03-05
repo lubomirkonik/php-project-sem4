@@ -5,7 +5,6 @@ include_once 'orders-data.php'; ?>
     if(isset($orders) && count($orders)>0)
     {
     ?>
-    <form class="" action="orders-data.php" method="POST">  
     <table class="table products-table">
       <thead>
         <tr>
@@ -21,40 +20,40 @@ include_once 'orders-data.php'; ?>
       </thead>
       <tbody>
         <?php
-          foreach ($orders as $orders) {
+          foreach ($orders as $order) {
         ?>
+          <form action="orders-data.php" method="POST">
           <tr>
-            <td><input type="hidden" name="od_id" value="<?php echo $orders->od_id; ?>"><?php echo $orders->od_id; ?></td>
-            <td><?php echo $orders->od_date; ?></td>
-            <td><?php echo $orders->products; ?></td>
+            <td><input type="hidden" name="od_id" value="<?php echo $order->od_id; ?>" ><?php echo $order->od_id; ?></td>
+            <td><?php echo $order->od_date; ?></td>
+            <td><?php echo $order->products; ?></td>
             <td>
                 <select name="od_status" id="od_status">
-                  <option value="<?php echo $orders->od_status; ?>"><?php echo $orders->od_status; ?></option>
+                  <option value="<?php echo $order->od_status; ?>"><?php echo $order->od_status; ?></option>
                   <?php
                     $tmp = array();
-                    for($i=0;$i<count($statuses);$i++){
-                        if(strcmp($orders->od_status, $statuses[$i])!==0){
-                            $tmp[]=$statuses[$i]; 
+                    for ($i=0; $i < count($statuses); $i++) {
+                        if (strcmp($order->od_status, $statuses[$i]) !== 0){
+                            $tmp[] = $statuses[$i]; 
                         }
                     }
                     foreach ($tmp as $status) {
-                        echo '<option value='.$status.'>'.$status.'</option>';
+                        echo '<option value="'.$status.'">'.$status.'</option>';
                     }
                   ?>
                 </select>
             </td>
-            <td><?php echo $orders->od_name; ?></td>
-            <td><?php echo $orders->od_address . '<br>' . $orders->od_city . ' ' . $orders->od_postal_code; ?></td>
-            <td><?php echo $orders->od_cost ?> &euro;</td>
-            <!--<td><a href="orders-data.php?update=<?php// echo $orders->od_id ?>&status=<?php ?>">Update</a></td>-->
-            <td><input class="input-submit" type="submit" value="Update"></td>
+            <td><?php echo $order->od_name; ?></td>
+            <td><?php echo $order->od_address . '<br>' . $order->od_city . ' ' . $order->od_postal_code; ?></td>
+            <td><?php echo $order->od_cost ?> &euro;</td>
+            <td><input class="input-submit" type="submit" value="Update" ></td>
           </tr>
+          </form>
         <?php
           }
         ?>
       </tbody>
     </table>
-    </form>      
     <?php
     } else { 
     ?>
