@@ -21,7 +21,7 @@ while ($row = mysql_fetch_object($res)) {
 	$products[] = $row;
 }
 
-//handle new category request
+//handle new product request
 if(is_array($_POST) && count($_POST) > 0) {
 	$proname = $_POST['proname'];
 	$prodesc = htmlspecialchars($_POST['prodesc']);
@@ -79,7 +79,7 @@ if(is_array($_POST) && count($_POST) > 0) {
 		exit();
 	}
 
-	// Build our target path full string.  This is where the file will be moved do
+	// Build our target path full string.  This is where the file will be moved to
 	// i.e.  images/picture.jpg
 	$TARGET_PATH = __DIR__.'/../'."img/uploads/";
 	$TARGET_PATH = $TARGET_PATH . basename( $proimage['name']);

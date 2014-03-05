@@ -18,7 +18,7 @@ else {
 		die("Unable to select database");
 	}
 	$products;
-	//get all the categories
+	//get product details with category name
 	$res = mysql_query("SELECT `tbl_product`.*,`tbl_category`.`cat_name`
 						FROM `tbl_product`
 						INNER JOIN `tbl_category`
@@ -35,7 +35,7 @@ include 'includes/nav.php';
 ?>
 <div id="main">
     <header class="container">
-  <ol class="breadcrumb">
+      <ol class="breadcrumb">
         <li><a href="store.php">Store</a></li>
         <li><a href="store.php?category=<?php echo $product->cat_id ?>"><?php echo $product->cat_name ?></a></li>
         <li class="active"><?php echo $product->pd_name ?></li>
