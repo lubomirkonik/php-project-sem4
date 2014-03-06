@@ -95,9 +95,16 @@ footer p{
     vertical-align: middle;
 }
 
+/*home*/
 #carousel-img {
     padding-top: 40px;
 }
+
+.messages {
+    z-index: 1;
+    position: absolute;
+}
+/*------*/
 
 .signin-profile {
     padding-top: 20px;
