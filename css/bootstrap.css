@@ -469,7 +469,7 @@ h3 small,.h3 small,h4 small,.h4 small {
 
 .page-header {
     padding-bottom: 9.5px;
-    margin: 42px 0 21px;
+    margin: /*42*/26px 0 21px;
     border-bottom: 1px solid black
 }
 

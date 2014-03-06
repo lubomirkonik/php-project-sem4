@@ -72,7 +72,7 @@ include_once __DIR__.'/../admin/category-data.php';
     </nav>
 
     <div class="container" id="messages">
-      <div class="messages">
+      <!--<div class="messages">-->
       <?php
           if( isset($_SESSION['MSGS']) && is_array($_SESSION['MSGS']) && count($_SESSION['MSGS']) >0 ) {
               ?>
@@ -105,5 +105,5 @@ include_once __DIR__.'/../admin/category-data.php';
             unset($_SESSION['ERR_MSGS']);
           }
         ?>
-      </div>
+      <!--</div>-->
     </div>
