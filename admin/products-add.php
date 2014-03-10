@@ -73,7 +73,7 @@ if(intval($_SESSION['SESS_IS_ADMIN']) !== 1)
                 <div class="form-group">
                   <label for="price" class="control-label col-md-3">Price</label>
                   <div class="col-md-6 input-group">
-                    <input type="number" placeholder="00,00" class="form-control" name="price" id="price" pattern="[0-9]+(\\,[0-9][0-9]?)?">
+                    <input type="number" placeholder="00,00" class="form-control" name="price" id="price" pattern="[0-9]+(\,[0-9][0-9]?)?">
                     <span class="input-group-addon">&euro;</span>
                   </div>
                 </div>
