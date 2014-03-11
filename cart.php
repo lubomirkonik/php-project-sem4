@@ -1,5 +1,6 @@
 <?php
 session_start();
+//clearing the cart
 if(isset($_GET['clear'])) 
 {
   if ($_GET[clear]) 
@@ -7,11 +8,13 @@ if(isset($_GET['clear']))
     unset($_SESSION['CART']);
     $_SESSION['MSGS'] = array('Your cart has been emptied.');
     session_write_close();
+    //redirecting after the the request is done
     header("location: cart.php");
     exit();
   }
 }
 
+//removing items from the cart
 if ( isset($_GET['del']) ) 
 {
   foreach($_SESSION['CART'] as $cart_item_ID => $cart_item)
@@ -20,12 +23,14 @@ if ( isset($_GET['del']) )
         unset($_SESSION['CART'][$cart_item_ID]);
         $_SESSION['MSGS'] = array('Item removed from your cart.');
         session_write_close();
+        //redirecting after the the request is done
         header("location: cart.php");
         exit();
       }
   }
 }
 
+//adding items into cart
 if(isset($_GET['add']) )
 {
   //Include database connection details
@@ -39,7 +44,6 @@ if(isset($_GET['add']) )
   if(!$db) {
     die("Unable to select database");
   }
-  $product;
   $res = mysql_query("SELECT `tbl_product`.*,`tbl_category`.`cat_name`
             FROM `tbl_product`
             INNER JOIN `tbl_category`
@@ -55,13 +59,16 @@ if(isset($_GET['add']) )
     array_push($_SESSION['CART'], $product );
     $_SESSION['MSGS'] = array('Item added to your cart.');
     session_write_close();
+    //redirecting after the the request is done
     header("location: cart.php");
     exit();
   }
   else
   {
+  	//adding error message if necessary
     $_SESSION['ERR_MSGS'] = array('Item is already added to your cart.');
     session_write_close();
+    //redirecting after the the request is done
     header("location: cart.php");
     exit();
   }
@@ -76,6 +83,7 @@ include 'includes/nav.php';
     <h3 class="page-header">Cart</h3>
   </header>
   <div class="container">
+  <!-- displaying cart contents -->
     <?php if( isset( $_SESSION['CART']) && count($_SESSION['CART']) > 0 )  { ?>
     <div class="table-responsive">
       <table class="table products-table">
@@ -110,6 +118,7 @@ include 'includes/nav.php';
             <h4>Total:</h4>
           </td>
           <td colspan="2">
+          <!-- cart total cost -->
             <?php echo sprintf('%01.2f', $_SESSION['total']); ?> &euro;
           </td>
         </tr>
@@ -121,6 +130,7 @@ include 'includes/nav.php';
       <a href="order.php" class="btn">Place Order</a>     
     </div>
     <?php 
+    //message on empty cart
     } else {
       echo '<div class="alert"><strong>Please, add something to your cart.</strong></div>';
     }

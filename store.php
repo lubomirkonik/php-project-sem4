@@ -4,6 +4,7 @@ include 'includes/header.php';
 include 'includes/nav.php';
 ?>
 <?php
+//database connection, config.php contains database configuration
 require_once('config.php');
 $link = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 if (!$link) {
@@ -16,6 +17,7 @@ if(!$db) {
 }
 $products = array();
 
+//implementation of search functionality
 if ( isset($_GET['search']) ) 
 {
   $keyword = trim($_GET['search']);
@@ -25,10 +27,11 @@ if ( isset($_GET['search']) )
           ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
           WHERE `pd_name` LIKE '%".$keyword."%'
           ORDER BY `pd_id` DESC");
-  while ($row = mysql_fetch_object($res)) {
+  while (($row = mysql_fetch_object($res)) !== false) {
     $products[] = $row;
   }
 }
+//implementation of filtering products by category
 elseif ( isset($_GET['category']) ) 
 {
   $category = trim($_GET['category']);
@@ -38,10 +41,12 @@ elseif ( isset($_GET['category']) )
           ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
           WHERE `tbl_product`.`cat_id`=".$category."
           ORDER BY `pd_id` DESC");
-  while ($row = mysql_fetch_object($res)) {
+  while (($row = mysql_fetch_object($res)) !== false) {
     $products[] = $row;
   }
 }
+
+//if neither search nor category were used, display all products
 else
 {
   $res = mysql_query("SELECT `tbl_product`.*,`tbl_category`.`cat_name`
@@ -49,7 +54,7 @@ else
           INNER JOIN `tbl_category`
           ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
           ORDER BY `pd_id` DESC");
-  while ($row = mysql_fetch_object($res)) {
+  while (($row = mysql_fetch_object($res)) !== false) {
     $products[] = $row;
   }
 }
