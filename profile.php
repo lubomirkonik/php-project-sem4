@@ -9,6 +9,7 @@ include 'includes/profile-data.php';
       <div class="row">
         <div class="col-md-5">
           <h4>User credentials</h4>
+          <!-- form for changing user data. -->
           <form class="form-horizontal" action="includes/profile-data.php" method="POST">
             <div class="form-group">
               <label for="inputEmail1" class="control-label col-md-4">Username</label>
@@ -24,6 +25,7 @@ include 'includes/profile-data.php';
             </div>
             <p>Change password</p>
             <?php
+              //displaying any error messages if errors occur
 	          if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
 	              ?>
 	              <div>
@@ -62,6 +64,7 @@ include 'includes/profile-data.php';
         <div class="col-md-7">
           <h4>Orders</h4>
           <?php
+          //displaying user's orders
           if(isset($orders))
           {
           ?>

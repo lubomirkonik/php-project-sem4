@@ -10,6 +10,7 @@ include 'includes/nav.php';
   <div class="container">
     <div class="row">
       <div class="col-md-7 col-sm-6">
+      <!-- display items in cart -->
         <?php if( count($_SESSION['CART']) > 0 )  { ?>
         <h4>Review Order Items</h4>
     	<div class="table-responsive">
@@ -93,6 +94,7 @@ include 'includes/nav.php';
     </div>
   </div>
 </div>
+<!-- script checking if necessary fields were filled by user -->
 <script>
     $('#oform').submit(function(e){
       $('.alert').remove();

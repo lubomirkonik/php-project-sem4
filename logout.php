@@ -10,5 +10,6 @@
 
 	$_SESSION['MSGS'] = array("You have been logged out. ");
 	session_write_close();
+	//redirect to main page after the logging out is done
 	header("location: index.php");
 ?>

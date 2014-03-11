@@ -17,14 +17,13 @@ else {
 	if(!$db) {
 		die("Unable to select database");
 	}
-	$products;
 	//get product details with category name
 	$res = mysql_query("SELECT `tbl_product`.*,`tbl_category`.`cat_name`
 						FROM `tbl_product`
 						INNER JOIN `tbl_category`
 						ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
 						WHERE `pd_id`=".$_GET['id']);
-	while ($row = mysql_fetch_object($res)) {
+	while (($row = mysql_fetch_object($res)) !== false) {
 		$product = $row;
 	}
 }

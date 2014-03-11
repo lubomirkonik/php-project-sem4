@@ -9,6 +9,7 @@ include 'includes/nav.php';
       <form method="POST" action="includes/login-exec.php" accept-charset="UTF-8" class="form-signin">
         <h3 class="form-signin-heading">Please sign in</h3>
         <?php
+        //displaying any error messages if errors occur
           if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
               ?>
               <div class="alert">

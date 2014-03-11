@@ -7,6 +7,7 @@
       <div class="row">
         <div class="col-xs-offset-4 col-sm-4 col-sm-offset-4">
           <?php
+          //displaying any error messages if errors occur
           if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
               ?>
               <div class="alert">
@@ -22,6 +23,7 @@
             unset($_SESSION['ERRMSG_ARR']);
           }
         ?>
+          <!-- submit sends user to inculdes/register-exec.php where the registration request is handled -->
           <form action="includes/register-exec.php" method="post">
             <h3>Register Here</h3>
             <div class="form-group">
