@@ -73,7 +73,6 @@ else
             <div class="thumbnail">
               <img src="img/uploads/<?php echo $product->pd_image ?>" alt="<?php echo $product->pd_name ?>">
               <div class="caption">
-                 <!--<h4 class="text-center"><?php //echo $product->pd_name ?><small>&nbsp;&nbsp;<?php //echo $product->pd_price ?> &euro;</small></h4>-->
                  <h4 class="text-center">
                      <abbr title="<?php echo $product->pd_name ?>" ><?php echo trim_text($product->pd_name); ?></abbr>
                      <small>&nbsp;<?php echo $product->pd_price ?> &euro;</small>
@@ -122,7 +121,7 @@ function trim_text($input, $length = 12, $ellipses = false, $strip_html = false)
     //find last space within length
 //    $last_space = strrpos(substr($input, 0, $length), ' ');
 //    $trimmed_text = substr($input, 0, $last_space);
-    
+
     $trimmed_text = substr($input, 0, $length);
   
     //add ellipses (...)
