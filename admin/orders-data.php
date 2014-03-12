@@ -12,14 +12,13 @@ if(!$db) {
 	die("Unable to select database");
 }
 $statuses = array('New', 'Shipped', 'Completed', 'Cancelled');
-$orders;
 //get all the categories
 $res = mysql_query("SELECT `tbl_order`.*,GROUP_CONCAT(`pd_name` SEPARATOR ', ')  as `products`
 					FROM `tbl_order`,`tbl_order_item`, `tbl_product`
 					WHERE `tbl_order`.`od_id` = `tbl_order_item`.`od_id` 
 					AND `tbl_product`.`pd_id` = `tbl_order_item`.`pd_id`
 					GROUP BY `od_id`");
-while ($row = mysql_fetch_object($res)) {
+while (($row = mysql_fetch_object($res)) !== false) {
 	$orders[] = $row;
 }
 

@@ -1,5 +1,6 @@
 <?php
 session_start();
+//authentication, denying access if no user is logged in or if the user is not admin; and redirecting to proper page
 if(!isset($_SESSION['SESS_USER_ID']) || (trim($_SESSION['SESS_USER_ID']) == '')) {
 	header("location: ../access-denied.php");
 	exit();
@@ -24,6 +25,7 @@ if(intval($_SESSION['SESS_IS_ADMIN']) !== 1)
 	<h2>Administration</h2><a href="../" class="btn btn-xs">Back to site</a>
 	<hr>
 	<?php
+	//displaying any important messages
       if( isset($_SESSION['MSGS']) && is_array($_SESSION['MSGS']) && count($_SESSION['MSGS']) >0 ) {
           ?>
           <div class="alert">
@@ -40,6 +42,7 @@ if(intval($_SESSION['SESS_IS_ADMIN']) !== 1)
       }
     ?>
     <?php
+    //adding error message if necessary
       if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
           ?>
           <div class="alert">

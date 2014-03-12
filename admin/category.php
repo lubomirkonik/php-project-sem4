@@ -6,6 +6,7 @@ include_once 'category-data.php';
   </div>
   <div class="col-md-10">
     <?php
+    //displaying categories if some exist
     if(isset($categories) && count($categories)>0)
     {
     ?>

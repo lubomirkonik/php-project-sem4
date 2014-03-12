@@ -23,6 +23,7 @@ include_once __DIR__.'/../admin/category-data.php';
                   <ul class="dropdown-menu">
                       <li><a href="store.php">All Products</a></li>
                       <?php
+                      //displays categories if any exist in the system
                       if(isset($categories) && count($categories)>0) {
                         foreach ($categories as $category) {
                             echo '<li><a href="store.php?category='.$category->cat_id.'">'.$category->cat_name.'</a></li>';
@@ -90,6 +91,7 @@ include_once __DIR__.'/../admin/category-data.php';
           }
         ?>
         <?php
+        //adding error message if necessary
           if( isset($_SESSION['ERR_MSGS']) && is_array($_SESSION['ERR_MSGS']) && count($_SESSION['ERR_MSGS']) >0 ) {
               ?>
               <div class="alert">
