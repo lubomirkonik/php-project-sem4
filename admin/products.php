@@ -5,6 +5,7 @@ include_once 'products-data.php'; ?>
   </div>
   <div class="col-md-10">
     <?php
+    //display products, if any exist in the system
     if(isset($products) && count($products)>0)
     {
     ?>

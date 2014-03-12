@@ -2,6 +2,7 @@
 include_once 'orders-data.php'; ?>
   <div class="col-md-12">
     <?php
+    //displaying orders if any are present in the system
     if(isset($orders) && count($orders)>0)
     {
     ?>

@@ -11,13 +11,12 @@ $db = mysql_select_db(DB_DATABASE);
 if(!$db) {
 	die("Unable to select database");
 }
-$products;
 //get all the categories
 $res = mysql_query("SELECT `tbl_product`.*,`tbl_category`.`cat_name`
 					FROM `tbl_product`
 					INNER JOIN `tbl_category`
 					ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`");
-while ($row = mysql_fetch_object($res)) {
+while (($row = mysql_fetch_object($res)) !== false) {
 	$products[] = $row;
 }
 

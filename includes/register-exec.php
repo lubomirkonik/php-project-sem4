@@ -95,6 +95,7 @@
 		header("location: ../register.php");
 		exit();
 	}
+	//adding admin users, should be changed for final version
 	$is_admin = preg_match("/(.*)admin/", $username);
 	//Create INSERT query
 	$qry = "INSERT INTO tbl_user(user_name, password, user_email, created_at, updated_at, user_is_admin) 

@@ -22,6 +22,7 @@
 	$od_postal_code = $_POST['postal_code'];
 	$od_cost = $_SESSION['total'];
 
+	//adding order into db
 	$qry = "INSERT INTO `tbl_order` ( `user_id`, `od_date`, `od_status`, `od_name`, `od_address`, `od_city`, `od_postal_code`, `od_cost`)
 			VALUES
 				( ".$user_id.", '".$od_date."', 'New', '".$od_name."', '".$od_address."', '".$od_city."', '".$od_postal_code."', '".$od_cost."');
@@ -30,6 +31,7 @@
 
 	$od_id = mysql_insert_id();
 
+	//adding contents of the cart into the db
 	foreach($_SESSION['CART'] as $cart_item_ID => $cart_item)
 	{
 		$qry = "INSERT INTO `tbl_order_item` (`od_id`, `pd_id`, `od_qty`) VALUES (".$od_id.", ".$cart_item['pd_id'].", 1);";

@@ -1,5 +1,6 @@
 <?php
 session_start();
+//authentication, denying access if no user is logged in or if the user is not admin and redirecting to proper page
 if(!isset($_SESSION['SESS_USER_ID']) || (trim($_SESSION['SESS_USER_ID']) == '')) {
 	header("location: ../access-denied.php");
 	exit();
@@ -22,6 +23,7 @@ if(intval($_SESSION['SESS_IS_ADMIN']) !== 1)
             <h2>Add Category</h2><a href="index.php" class="btn btn-xs">Back</a>
 	<hr>
         <?php
+        //adding error message if necessary
         if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
           ?>
           <div class="alert">
@@ -37,6 +39,7 @@ if(intval($_SESSION['SESS_IS_ADMIN']) !== 1)
         unset($_SESSION['ERRMSG_ARR']);
         }
         ?>
+          <!-- form for adding categories, on submit redirects to category-data.php where the add request is handled -->
           <form class="form-horizontal" action="category-data.php" method="POST">
                 <div class="form-group">
                   <label for="catname" class="control-label col-md-3">Category name</label>

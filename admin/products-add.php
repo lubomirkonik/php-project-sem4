@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once 'category-data.php';
+//authentication, denying access if no user is logged in or if the user is not admin and redirecting to proper page
 if(!isset($_SESSION['SESS_USER_ID']) || (trim($_SESSION['SESS_USER_ID']) == '')) {
 	header("location: ../access-denied.php");
 	exit();
@@ -23,6 +24,7 @@ if(intval($_SESSION['SESS_IS_ADMIN']) !== 1)
             <h2>Add Product</h2><a href="index.php" class="btn btn-xs">Back</a>
 	<hr>
         <?php
+        //adding error message if necessary
         if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
           ?>
           <div class="alert">
@@ -38,6 +40,7 @@ if(intval($_SESSION['SESS_IS_ADMIN']) !== 1)
         unset($_SESSION['ERRMSG_ARR']);
         }
         ?>
+        <!-- form for adding products, on submit redirects to products-data.php where the add request is handled -->
         <form class="form-horizontal" action="products-data.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="category" class="control-label col-md-3">Category</label>

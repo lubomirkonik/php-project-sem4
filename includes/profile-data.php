@@ -15,19 +15,23 @@ if(!$db) {
 	die("Unable to select database");
 }
 
+//getting user data from db
 $res = mysql_query("SELECT * FROM tbl_user WHERE user_id=".$user_id." LIMIT 1");
 $user = mysql_fetch_assoc($res);
 
+//getting order data from db
 $ord_res = mysql_query("SELECT `tbl_order`.*,GROUP_CONCAT(`pd_name` SEPARATOR ', ') as `products`
 						FROM `tbl_order`,`tbl_order_item`, `tbl_product`
 						WHERE `tbl_order`.`od_id` = `tbl_order_item`.`od_id` 
 						AND `tbl_product`.`pd_id` = `tbl_order_item`.`pd_id`
 						AND user_id=".$user_id." GROUP BY `od_id`");
-while ($row = mysql_fetch_object($ord_res)) {
+while (($row = mysql_fetch_object($ord_res)) !== false) {
 	$orders[] = $row;
 }
 
+//handling requests for profile changes
 if(is_array($_POST) && count($_POST) > 0) {
+	//password change
 	$password = $_POST['password'];
 	$cpassword = $_POST['cpassword'];
 
@@ -61,7 +65,7 @@ if(is_array($_POST) && count($_POST) > 0) {
 	if($result) {
 		$_SESSION['MSGS'] = array('Your password was changed successfully.');
 		session_write_close();
-		header("location: ..\profile.php");
+		header("location: ..\\profile.php");
 		exit();
 	}else {
 		die("Query failed: ".mysql_error());
