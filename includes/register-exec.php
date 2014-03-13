@@ -1,27 +1,17 @@
 <?php
 	//Start session
 	session_start();
-	
-	//Include database connection details
-	require_once(__DIR__.'/../config.php');
-	
+		
 	//Array to store validation errors
 	$errmsg_arr = array();
 	
 	//Validation error flag
 	$errflag = false;
 	
-	//Connect to mysql server
-	$link = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
-	if(!$link) {
-		die('Failed to connect to server: ' . mysql_error());
-	}
+	//database connection
+	require_once(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dbManager.php');
+	$dbManager = dbManager::getInstance();
 	
-	//Select database
-	$db = mysql_select_db(DB_DATABASE);
-	if(!$db) {
-		die("Unable to select database");
-	}
 	
 	//Function to sanitize values received from the form. Prevents SQL injection
 	function clean($str) {
@@ -75,13 +65,12 @@
 	//Check for duplicate login ID
 	if($username != '') {
 		$qry = "SELECT * FROM tbl_user WHERE user_name='$username'";
-		$result = mysql_query($qry);
-		if($result) {
-			if(mysql_num_rows($result) > 0) {
+		$result =$dbManager->selectQuery($qry);
+		if($result !== false) {
+			if(count($result) > 0) {
 				$errmsg_arr[] = 'Username already in use';
 				$errflag = true;
 			}
-			@mysql_free_result($result);
 		}
 		else {
 			die("Query failed");
@@ -100,7 +89,7 @@
 	//Create INSERT query
 	$qry = "INSERT INTO tbl_user(user_name, password, user_email, created_at, updated_at, user_is_admin) 
 			VALUES('$username','".md5($_POST['password'])."','$email','".date("Y-m-d H:i:s")."', '".date("Y-m-d H:i:s")."', $is_admin)";
-	$result = @mysql_query($qry);
+	$result = $dbManager->query($qry);
 	
 	//Check whether the query was successful or not
 	if($result) {

@@ -33,44 +33,47 @@ if ( isset($_GET['del']) )
 //adding items into cart
 if(isset($_GET['add']) )
 {
-  //Include database connection details
-  require_once('config.php');
-  $link = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
-  if (!$link) {
-    die("Cannot access db.");
-  }
-
-  $db = mysql_select_db(DB_DATABASE);
-  if(!$db) {
-    die("Unable to select database");
-  }
-  $res = mysql_query("SELECT `tbl_product`.*,`tbl_category`.`cat_name`
+  //database connection
+  require_once 'includes/dbManager.php';
+  $dbManager = dbManager::getInstance();
+  $product = $dbManager->selectQuery(
+  		  	"SELECT `tbl_product`.*,`tbl_category`.`cat_name`
             FROM `tbl_product`
             INNER JOIN `tbl_category`
             ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
             WHERE `pd_id`=".$_GET['add']." LIMIT 1");
-
-  $product = mysql_fetch_assoc($res);
-
-  if(!isset( $_SESSION['CART']) ) $_SESSION['CART'] = array();
-
-  if(!in_array($product, $_SESSION['CART']))
+  $product = $product[0];
+  
+  //only allow adding to cart if the product is in stock
+  if($product->pd_qty != 0)
   {
-    array_push($_SESSION['CART'], $product );
-    $_SESSION['MSGS'] = array('Item added to your cart.');
-    session_write_close();
-    //redirecting after the the request is done
-    header("location: cart.php");
-    exit();
-  }
-  else
-  {
+	  if(!isset( $_SESSION['CART']) ) $_SESSION['CART'] = array();
+	
+	  if(!in_array($product, $_SESSION['CART']))
+	  {
+	    array_push($_SESSION['CART'], $product );
+	    $_SESSION['MSGS'] = array('Item added to your cart.');
+	    session_write_close();
+	    //redirecting after the the request is done
+	    header("location: cart.php");
+	    exit();
+	  }
+	  else
+	  {
+	  	//adding error message if necessary
+	    $_SESSION['ERR_MSGS'] = array('Item is already added to your cart.');
+	    session_write_close();
+	    //redirecting after the the request is done
+	    header("location: cart.php");
+	    exit();
+	  }
+  }else{
   	//adding error message if necessary
-    $_SESSION['ERR_MSGS'] = array('Item is already added to your cart.');
-    session_write_close();
-    //redirecting after the the request is done
-    header("location: cart.php");
-    exit();
+  	$_SESSION['ERR_MSGS'] = array('Item out of stock.');
+  	session_write_close();
+  	//redirecting after the the request is done
+  	header("location: cart.php");
+  	exit();
   }
 }// if GET is there
 ?>
@@ -100,14 +103,14 @@ include 'includes/nav.php';
         <?php
         $_SESSION['total'] = 0;
         foreach ($_SESSION['CART'] as $item) {
-          $_SESSION['total'] += $item['pd_price'];
+          $_SESSION['total'] += $item->pd_price;
           ?>
           <tr>
-            <td><?php echo $item['pd_name'] ?></td>
-            <td><?php echo $item['pd_description'] ?  trim_text($item['pd_description']) : '<span>No description</span>'; ?></td>
-            <td class="text-center"><?php echo $item['cat_name'] ?></td>
-            <td class="text-center"> <?php echo sprintf('%01.2f', $item['pd_price']); ?> &euro;</td>
-            <td class="text-center"><a href="cart.php?del=<?php echo $item['pd_id'] ?>">Remove</a></td>
+            <td><?php echo $item->pd_name ?></td>
+            <td><?php echo $item->pd_description ?  trim_text($item->pd_description) : '<span>No description</span>'; ?></td>
+            <td class="text-center"><?php echo $item->cat_name ?></td>
+            <td class="text-center"> <?php echo sprintf('%01.2f', $item->pd_price); ?> &euro;</td>
+            <td class="text-center"><a href="cart.php?del=<?php echo $item->pd_id ?>">Remove</a></td>
           </tr>
           <?php
         }
