@@ -6,6 +6,7 @@ class dbManager {
 	private $link;
 	private $db;
 	private static $instance = NULL;
+	
 	/**
 	 * Constructor of dbManager class.
 	 * Private to ensure proper singleton architecture.
@@ -37,7 +38,7 @@ class dbManager {
 	/**
 	 * Performs select query on the database.
 	 * Returns false if $query is not select query or if the query returns no rows.
-	 * Returns array of associative arrays if query is successful.
+	 * Returns array of rows as objects if query is successful.
 	 * @param String $query
 	 * @return false:
 	 * @return array;
@@ -71,6 +72,8 @@ class dbManager {
 	public function query($query){
 		$query_ok = false;
 		$insert = false;
+		
+		//checking for keywords, case insensitive
 		if (stripos($query,'insert') !== false) {
 			$query_ok = true;
 			$insert = true;
