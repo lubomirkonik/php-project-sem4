@@ -26,12 +26,12 @@ include 'includes/nav.php';
                 <?php
     $_SESSION['total'] = 0;
                 foreach ($_SESSION['CART'] as $item) {
-      $_SESSION['total'] += $item['pd_price'];
+      $_SESSION['total'] += $item->pd_price;
                   ?>
                   <tr>
-                    <td><?php echo $item['pd_name'] ?></td>
-                    <td class="text-center"><?php echo sprintf('%01.2f', $item['pd_price']); ?></td>
-                    <td class="text-center"><a href="cart.php?del=<?php echo $item['pd_id'] ?>">Remove</a></td>
+                    <td><?php echo $item->pd_name ?></td>
+                    <td class="text-center"><?php echo sprintf('%01.2f', $item->pd_price); ?></td>
+                    <td class="text-center"><a href="cart.php?del=<?php echo $item->pd_id ?>">Remove</a></td>
                   </tr>
                   <?php
                 }

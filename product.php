@@ -6,26 +6,16 @@ if(!isset($_GET['id']))
 	exit();
 }
 else {
-	//Include database connection details
-	require_once('config.php');
-	$link = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
-	if (!$link) {
-		die("Cannot access db.");
-	}
-
-	$db = mysql_select_db(DB_DATABASE);
-	if(!$db) {
-		die("Unable to select database");
-	}
+	//database connection
+	require_once 'includes/dbManager.php';
+	$dbManager = dbManager::getInstance();
 	//get product details with category name
-	$res = mysql_query("SELECT `tbl_product`.*,`tbl_category`.`cat_name`
+	$product = $dbManager->selectQuery("SELECT `tbl_product`.*,`tbl_category`.`cat_name`
 						FROM `tbl_product`
 						INNER JOIN `tbl_category`
 						ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
 						WHERE `pd_id`=".$_GET['id']);
-	while (($row = mysql_fetch_object($res)) !== false) {
-		$product = $row;
-	}
+	$product = $product[0];
 }
 ?>
 <?php

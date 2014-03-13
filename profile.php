@@ -14,13 +14,13 @@ include 'includes/profile-data.php';
             <div class="form-group">
               <label for="inputEmail1" class="control-label col-md-4">Username</label>
               <div class="col-md-8">
-                <input type="text" value="<?php echo $user['user_name'] ?>" class="form-control" disabled name="username" id="inputEmail1">
+                <input type="text" value="<?php echo $user->user_name ?>" class="form-control" disabled name="username" id="inputEmail1">
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-4">Email</label>
               <div class="controls col-md-8">
-                <input type="email" value="<?php echo $user['user_email'] ?>" class="form-control" disabled name="email">
+                <input type="email" value="<?php echo $user->user_email ?>" class="form-control" disabled name="email">
               </div>
             </div>
             <p>Change password</p>

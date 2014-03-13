@@ -11,17 +11,9 @@
 	//Validation error flag
 	$errflag = false;
 	
-	//Connect to mysql server
-	$link = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
-	if(!$link) {
-		die('Failed to connect to server: ' . mysql_error());
-	}
-	
-	//Select database
-	$db = mysql_select_db(DB_DATABASE);
-	if(!$db) {
-		die("Unable to select database");
-	}
+	//database connection
+	require_once(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dbManager.php');
+	$dbManager = dbManager::getInstance();
 	
 	//Function to sanitize values received from the form. Prevents SQL injection
 	function clean($str) {
@@ -56,17 +48,17 @@
 	
 	//Create query
 	$qry="SELECT * FROM tbl_user WHERE user_name='$username' AND password='".md5($_POST['password'])."'";
-	$result=mysql_query($qry);
+	$member = $dbManager->selectQuery($qry);
 
 	//Check whether the query was successful or not
-	if($result) {
-		if(mysql_num_rows($result) == 1) {
+	if($member !== false) {
+		if(count($member) == 1) {
 			//Login Successful
 			session_regenerate_id();
-			$member = mysql_fetch_assoc($result);
-			$_SESSION['SESS_USER_ID'] = $member['user_id'];
-			$_SESSION['SESS_USERNAME'] = $member['user_name'];
-			$_SESSION['SESS_IS_ADMIN'] = $member['user_is_admin'];
+			$member = $member[0];
+			$_SESSION['SESS_USER_ID'] = $member->user_id;
+			$_SESSION['SESS_USERNAME'] = $member->user_name;
+			$_SESSION['SESS_IS_ADMIN'] = $member->user_is_admin;
 			session_write_close();
 			header("location: ../index.php");
 			exit();

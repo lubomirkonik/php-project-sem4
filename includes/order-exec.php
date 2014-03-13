@@ -1,18 +1,10 @@
 <?php
 	//Start session
 	session_start();
-	//Include database connection details
-	require_once(__DIR__.'/../config.php');
-
-	$link = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
-	if (!$link) {
-		die("Cannot access db.");
-	}
-
-	$db = mysql_select_db(DB_DATABASE);
-	if(!$db) {
-		die("Unable to select database");
-	}
+	
+	//database connection
+	require_once(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dbManager.php');
+	$dbManager = dbManager::getInstance();
 
 	$user_id = $_SESSION['SESS_USER_ID'];
 	$od_date = date('Y-m-d');
@@ -27,22 +19,23 @@
 			VALUES
 				( ".$user_id.", '".$od_date."', 'New', '".$od_name."', '".$od_address."', '".$od_city."', '".$od_postal_code."', '".$od_cost."');
 			";
-	$result = mysql_query($qry);
 
-	$od_id = mysql_insert_id();
+	$od_id = $dbManager->query($qry);
 
 	//adding contents of the cart into the db
-	foreach($_SESSION['CART'] as $cart_item_ID => $cart_item)
-	{
-		$qry = "INSERT INTO `tbl_order_item` (`od_id`, `pd_id`, `od_qty`) VALUES (".$od_id.", ".$cart_item['pd_id'].", 1);";
-		$result = mysql_query($qry);
-
-		$qry = "UPDATE `tbl_product` SET `tbl_product`.`pd_qty` = `tbl_product`.`pd_qty` - 1 WHERE pd_id=".$cart_item['pd_id'];
-		$result = mysql_query($qry);
+	if($od_id){
+		foreach($_SESSION['CART'] as $cart_item_ID => $cart_item)
+		{
+			$qry = "INSERT INTO `tbl_order_item` (`od_id`, `pd_id`, `od_qty`) VALUES (" . $od_id . ", ".$cart_item->pd_id .", 1);";
+			$result = $dbManager->query($qry);
+	
+			$qry = "UPDATE `tbl_product` SET `tbl_product`.`pd_qty` = `tbl_product`.`pd_qty` - 1 WHERE pd_id=".$cart_item->pd_id;
+			$result = $dbManager->query($qry);
+		}
 	}
 
 	//Check whether the query was successful or not
-	if($result) {
+	if($result !== false) {
 		unset($_SESSION['CART']);
 		$_SESSION['MSGS'] = array('Your order has been placed.');
 		session_write_close();
