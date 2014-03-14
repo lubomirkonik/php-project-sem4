@@ -5,4 +5,6 @@
     define('DB_USER', 'root');
     define('DB_PASSWORD', 'root');
     define('DB_DATABASE', 'ecomme');
+    define('PLACEHOLDER_CAT_ID', 0);
+    define('PLACEHOLDER_PROD_ID', 0);
 ?>

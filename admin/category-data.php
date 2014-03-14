@@ -9,6 +9,7 @@ $categories = $dbManager->selectQuery("SELECT count(`tbl_product`.`cat_id`) as `
 					FROM `tbl_category`
 					LEFT JOIN `tbl_product`
 					ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
+					WHERE `tbl_category`.`cat_id` <> " . PLACEHOLDER_CAT_ID . "
 					GROUP BY `tbl_category`.`cat_id`;");
 
 //handle new category request
@@ -56,7 +57,7 @@ if(is_array($_GET) && count($_GET) > 0 && isset($_GET['delete'])) {
 		header("location: index.php");
 		exit();
 	}else {
-		$_SESSION['ERRMSG_ARR'] = array('Changes didn\'t happen, make sure your database is up.');
+		$_SESSION['ERRMSG_ARR'] = array('Changes didn\'t happen. Possible reasons include category still containing products, or database not being up.');
 		session_write_close();
 		header("location: index.php");
 		exit();

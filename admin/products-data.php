@@ -9,7 +9,8 @@ $dbManager = dbManager::getInstance();
 $products = $dbManager->selectQuery("SELECT `tbl_product`.*,`tbl_category`.`cat_name`
 					FROM `tbl_product`
 					INNER JOIN `tbl_category`
-					ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`");
+					ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
+					WHERE `tbl_product`.`pd_id` <> " . PLACEHOLDER_PROD_ID);
 
 //handle new product request
 if(is_array($_POST) && count($_POST) > 0) {
@@ -104,10 +105,15 @@ if(is_array($_POST) && count($_POST) > 0) {
 //handle delete request
 if(is_array($_GET) && count($_GET) > 0 && isset($_GET['delete'])) {
 	$pd_id = $_GET['delete'];
-
+	
+	$qry = "UPDATE `tbl_order_item` 
+			SET `pd_id` = " . PLACEHOLDER_PROD_ID . " 
+			WHERE `pd_id` = " . $pd_id;
+	$result = $dbManager->query($qry);
+	
 	$qry = "DELETE FROM `tbl_product`
 			WHERE pd_id=".$pd_id;
-	$result = $dbManager->query($qry);
+	$result = ($result and ($dbManager->query($qry)));
 	//Check whether the query was successful or not
 	if($result) {
 		$_SESSION['MSGS'] = array('Changes were successful.');

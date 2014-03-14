@@ -19,6 +19,7 @@ if ( isset($_GET['search']) )
           INNER JOIN `tbl_category`
           ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
           WHERE `pd_name` LIKE '%".$keyword."%'
+  		  AND `tbl_product`.`pd_id` <> " . PLACEHOLDER_PROD_ID . "
           ORDER BY `pd_id` DESC");
 }
 //implementation of filtering products by category
@@ -40,6 +41,7 @@ else
           FROM `tbl_product`
           INNER JOIN `tbl_category`
           ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
+  		  WHERE `tbl_product`.`pd_id` <> " . PLACEHOLDER_PROD_ID . "
           ORDER BY `pd_id` DESC");
 }
 ?>
