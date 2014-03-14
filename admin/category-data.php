@@ -9,6 +9,7 @@ $categories = $dbManager->selectQuery("SELECT count(`tbl_product`.`cat_id`) as `
 					FROM `tbl_category`
 					LEFT JOIN `tbl_product`
 					ON `tbl_product`.`cat_id`=`tbl_category`.`cat_id`
+					WHERE `tbl_category`.`cat_id` <> " . PLACEHOLDER_CAT_ID . "
 					GROUP BY `tbl_category`.`cat_id`;");
 
 //handle new category request
