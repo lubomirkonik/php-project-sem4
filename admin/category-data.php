@@ -57,7 +57,7 @@ if(is_array($_GET) && count($_GET) > 0 && isset($_GET['delete'])) {
 		header("location: index.php");
 		exit();
 	}else {
-		$_SESSION['ERRMSG_ARR'] = array('Changes didn\'t happen, make sure your database is up.');
+		$_SESSION['ERRMSG_ARR'] = array('Changes didn\'t happen. Possible reasons include category still containing products, or database not being up.');
 		session_write_close();
 		header("location: index.php");
 		exit();
