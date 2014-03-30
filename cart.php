@@ -19,7 +19,7 @@ if ( isset($_GET['del']) )
 {
   foreach($_SESSION['CART'] as $cart_item_ID => $cart_item)
   {
-      if($cart_item['pd_id'] == $_GET['del']){
+      if($cart_item->pd_id == $_GET['del']){
         unset($_SESSION['CART'][$cart_item_ID]);
         $_SESSION['MSGS'] = array('Item removed from your cart.');
         session_write_close();

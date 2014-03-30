@@ -74,8 +74,8 @@ CREATE TABLE IF NOT EXISTS `tbl_order` (
 --
 
 INSERT INTO `tbl_order` (`od_id`, `user_id`, `od_date`, `od_status`, `od_name`, `od_address`, `od_city`, `od_postal_code`, `od_cost`) VALUES
-(9, 101, '2014-03-15', 'Completed', 'Ivan Molcan', 'Ambroseho 26/B', 'Bratislava', '123456', '162.68'),
-(10, 101, '2014-03-15', 'Cancelled', 'Ivan Molcan', 'Ambroseho 26/B', 'Bratislava', '123456', '108.49'),
+(9, 101, '2014-03-15', 'Completed', 'Ivan Molcan', 'Ambroseho 26/B', 'Bratislava', '841 05', '162.68'),
+(10, 101, '2014-03-15', 'Cancelled', 'Ivan Molcan', 'Ambroseho 26/B', 'Bratislava', '841 05', '108.49'),
 (11, 102, '2014-03-15', 'Completed', 'Daniel Bene', 'Adyho 28', 'Lucenec', '984 01', '202.7'),
 (12, 102, '2014-03-15', 'Shipped', 'Daniel Bene', 'Adyho 28', 'Lucenec', '984 01', '131.2'),
 (13, 102, '2014-03-15', 'New', 'Daniel Bene', 'Adyho 28', 'Lucenec', '984 01', '82.21');
